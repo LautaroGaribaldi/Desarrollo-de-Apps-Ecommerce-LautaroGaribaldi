@@ -1,15 +1,17 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onSelectProductEvent }) => {
     return (
-        <View style={styles.containerProductItem}>
-            <Text style={styles.productTitle}>{product.title}</Text>
-            <Image
-                style={styles.productImage}
-                resizeMode="cover"
-                source={{ uri: product.thumbnail }}
-            />
+        <View>
+            <TouchableOpacity style={styles.containerProductItem} onPress={() => onSelectProductEvent(product)}>
+                <Text style={styles.productTitle}>{product.title}</Text>
+                <Image
+                    style={styles.productImage}
+                    resizeMode="cover"
+                    source={{ uri: product.thumbnail }}
+                />
+            </TouchableOpacity>
         </View>
     )
 }

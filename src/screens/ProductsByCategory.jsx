@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import products_data from "../data/products_data.json"
 import ProductItem from '../components/ProductItem'
 import Header from '../components/Header'
 import Search from '../components/Search'
 import Card from '../components/Card'
+import { colors } from '../global/colors'
 
 
 
-const ProductsByCategory = ({ category }) => {
+const ProductsByCategory = ({ category, onSelectProductEvent, onSelectCategoryEvent }) => {
 
     const [productsByCategory, setProductsByCategory] = useState([])
     const [search, setSearch] = useState("")
@@ -21,7 +22,7 @@ const ProductsByCategory = ({ category }) => {
 
     const renderProductItem = ({ item }) => (
         <Card>
-            <ProductItem product={item} />
+            <ProductItem product={item} onSelectProductEvent={onSelectProductEvent} />
         </Card>
     )
 
@@ -38,6 +39,7 @@ const ProductsByCategory = ({ category }) => {
                 renderItem={renderProductItem}
                 keyExtractor={item => item.id}
             />
+            <Button title="Go Back" onPress={() => { onSelectCategoryEvent("") }} color={colors.aux} />
         </>
 
     )

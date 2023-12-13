@@ -6,9 +6,9 @@ import CategoryItem from '../components/CategoryItem'
 
 
 
-const Categories = () => {
+const Categories = ({ onSelectCategoryEvent }) => {
     const renderCategoryItem = ({ item }) => (
-        <CategoryItem category={item} />
+        <CategoryItem category={item} onSelectCategoryEvent={onSelectCategoryEvent} />
     )
     return (
         <>

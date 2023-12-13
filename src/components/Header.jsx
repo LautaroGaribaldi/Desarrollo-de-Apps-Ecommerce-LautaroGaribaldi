@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.tertiary
     },
     headerTitle: {
-        color: colors.white
+        color: colors.white,
+        fontFamily: "RobotoMono-Bold"
     }
 })

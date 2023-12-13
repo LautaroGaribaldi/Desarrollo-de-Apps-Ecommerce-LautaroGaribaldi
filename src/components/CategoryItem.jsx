@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Card from './Card'
 import { colors } from '../global/colors'
 
-const CategoryItem = ({ category }) => {
+const CategoryItem = ({ category, onSelectCategoryEvent }) => {
     return (
-        <Card style={styles.cardConteiner}>
-            <Text style={styles.text}>{category}</Text>
-        </Card>
+        <TouchableOpacity onPress={() => onSelectCategoryEvent(category)}>
+            <Card style={styles.cardConteiner}>
+                <Text style={styles.text}>{category}</Text>
+            </Card>
+        </TouchableOpacity>
     )
 }
 
@@ -22,5 +24,6 @@ const styles = StyleSheet.create({
     text: {
         textTransform: "capitalize",
         fontSize: 15,
+        fontFamily: "RobotoMono-Regular"
     }
 })

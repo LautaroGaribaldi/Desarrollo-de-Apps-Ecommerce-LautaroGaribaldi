@@ -7,11 +7,10 @@ import ProductDetail from "./src/screens/ProductDetail.jsx";
 
 export default function App() {
     const [categorySelected, setCategorySelected] = useState("");
-    const [productSelected, setProductSelected] = useState({});
+    const [productIdSelected, setProductIdSelected] = useState(null);
 
     console.log("Categoria selleccionada: ", categorySelected);
-    console.log("Producto selleccionado: ", productSelected);
-    console.log(productSelected.title)
+    console.log("Producto selleccionado: ", productIdSelected);
 
     const [fontLoaded] = useFonts({
         "RobotoMono-Regular": require("./assets/fonts/RobotoMono-Regular.ttf"),
@@ -25,9 +24,9 @@ export default function App() {
         setCategorySelected(category);
     };
 
-    const onSelectProduct = (product) => {
-        setProductSelected(product);
+    const onSelectProductId = (productId) => {
+        setProductIdSelected(productId);
     };
 
-    return <>{categorySelected ? productSelected.title ? <ProductDetail product={productSelected} onSelectProductEvent={onSelectProduct} /> : <ProductsByCategory category={categorySelected} onSelectProductEvent={onSelectProduct} onSelectCategoryEvent={onSelectCategory} /> : <Categories onSelectCategoryEvent={onSelectCategory} />}</>;
+    return <>{productIdSelected ? <ProductDetail productId={productIdSelected} onSelectProductIdEvent={onSelectProductId} /> : categorySelected ? <ProductsByCategory category={categorySelected} onSelectProductIdEvent={onSelectProductId} onSelectCategoryEvent={onSelectCategory} /> : <Categories onSelectCategoryEvent={onSelectCategory} />}</>;
 }

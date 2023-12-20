@@ -1,26 +1,49 @@
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, Button, Image, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { colors } from '../global/colors'
+import products_data from "../data/products_data.json"
 
-const ProductDetail = ({ product, onSelectProductEvent }) => {
+const ProductDetail = ({ productId, onSelectProductIdEvent }) => {
+    const [productSelected, setProductSelected] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const productFound = products_data.find(product => product.id === productId)
+        setProductSelected(productFound)
+        setIsLoading(!isLoading)
+
+    }
+        , [productId])
+
     return (
         <>
-            <Header title={product.category} />
-            <View style={styles.conteiner}>
-                <Text>{product.title}</Text>
-                <Image
-                    style={styles.productImage}
-                    resizeMode="cover"
-                    source={{ uri: product.thumbnail }}
-                />
-                <Text>{product.description}</Text>
-                <Text>price: ${product.price}</Text>
-                <Button title="Buy" onPress={null} color={colors.primary} />
-            </View>
-            <View>
-                <Button title="Go Back" onPress={() => onSelectProductEvent("")} color={colors.aux} />
-            </View>
+            <Header title="Detalles del producto" />
+            <>{
+                isLoading
+                    ?
+                    <ActivityIndicator />
+                    :
+                    <>
+                        <View style={styles.conteiner}>
+                            <Image
+                                style={styles.productImage}
+                                resizeMode="cover"
+                                source={{ uri: productSelected.thumbnail }}
+                            />
+                            <View style={styles.detailConteiner}>
+                                <Text style={styles.title}>{productSelected.title}</Text>
+                                <Text style={styles.text}>{productSelected.description}</Text>
+                                <Text style={styles.price}>${productSelected.price}</Text>
+                                <Button title="Buy" onPress={null} color={colors.primary} />
+                            </View>
+                        </View>
+                        <View>
+                            <Button title="Go Back" onPress={() => onSelectProductIdEvent("")} color={colors.aux} />
+                        </View>
+                    </>
+            }
+            </>
         </>
     )
 }
@@ -34,7 +57,24 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     productImage: {
-        width: 250,
-        height: 250,
+        minWidth: 300,
+        width: "100%",
+        height: 400,
+    },
+    text: {
+        fontSize: 15,
+        fontFamily: "RobotoMono-Regular",
+    },
+    title: {
+        fontSize: 32,
+        fontFamily: "RobotoMono-Bold",
+    },
+    price: {
+        fontSize: 32,
+        fontFamily: "RobotoMono-Bold",
+        color: colors.primary
+    },
+    detailConteiner: {
+        alignItems: "center",
     }
 })

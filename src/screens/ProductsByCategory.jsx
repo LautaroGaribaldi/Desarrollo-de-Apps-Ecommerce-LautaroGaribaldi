@@ -9,7 +9,7 @@ import { colors } from '../global/colors'
 
 
 
-const ProductsByCategory = ({ category, onSelectProductEvent, onSelectCategoryEvent }) => {
+const ProductsByCategory = ({ category, onSelectProductIdEvent, onSelectCategoryEvent }) => {
 
     const [productsByCategory, setProductsByCategory] = useState([])
     const [search, setSearch] = useState("")
@@ -22,7 +22,7 @@ const ProductsByCategory = ({ category, onSelectProductEvent, onSelectCategoryEv
 
     const renderProductItem = ({ item }) => (
         <Card>
-            <ProductItem product={item} onSelectProductEvent={onSelectProductEvent} />
+            <ProductItem product={item} onSelectProductIdEvent={onSelectProductIdEvent} />
         </Card>
     )
 

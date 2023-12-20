@@ -3,7 +3,6 @@ import Categories from "./src/screens/Categories.jsx";
 import { useFonts } from "expo-font";
 import ProductsByCategory from "./src/screens/ProductsByCategory.jsx";
 import { useState } from "react";
-import ProductItem from "./src/components/ProductItem.jsx";
 import ProductDetail from "./src/screens/ProductDetail.jsx";
 
 export default function App() {

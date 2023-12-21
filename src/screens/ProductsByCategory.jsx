@@ -9,10 +9,12 @@ import { colors } from '../global/colors'
 
 
 
-const ProductsByCategory = ({ category, onSelectProductIdEvent, onSelectCategoryEvent }) => {
+const ProductsByCategory = ({ navigation, route }) => {
 
     const [productsByCategory, setProductsByCategory] = useState([])
     const [search, setSearch] = useState("")
+
+    const { category } = route.params
 
     useEffect(() => {
         const productFilteredByCategory = products_data.filter(product => product.category === category)
@@ -22,7 +24,7 @@ const ProductsByCategory = ({ category, onSelectProductIdEvent, onSelectCategory
 
     const renderProductItem = ({ item }) => (
         <Card>
-            <ProductItem product={item} onSelectProductIdEvent={onSelectProductIdEvent} />
+            <ProductItem product={item} navigation={navigation} />
         </Card>
     )
 
@@ -32,14 +34,13 @@ const ProductsByCategory = ({ category, onSelectProductIdEvent, onSelectCategory
 
     return (
         <>
-            <Header title="Productos" />
             <Search onSearchHandlerEvent={onSearch} />
             <FlatList
                 data={productsByCategory}
                 renderItem={renderProductItem}
                 keyExtractor={item => item.id}
             />
-            <Button title="Go Back" onPress={() => { onSelectCategoryEvent("") }} color={colors.aux} />
+            <Button title="Go Back" onPress={null} color={colors.aux} />
         </>
 
     )

@@ -1,9 +1,10 @@
 import { ActivityIndicator } from "react-native";
-import Categories from "./src/screens/Categories.jsx";
+//import Categories from "./src/screens/Categories.jsx";
 import { useFonts } from "expo-font";
-import ProductsByCategory from "./src/screens/ProductsByCategory.jsx";
+//import ProductsByCategory from "./src/screens/ProductsByCategory.jsx";
 import { useState } from "react";
-import ProductDetail from "./src/screens/ProductDetail.jsx";
+import Navigator from "./src/navigation/Navigator";
+//import ProductDetail from "./src/screens/ProductDetail.jsx";
 
 export default function App() {
     const [categorySelected, setCategorySelected] = useState("");
@@ -28,5 +29,7 @@ export default function App() {
         setProductIdSelected(productId);
     };
 
-    return <>{productIdSelected ? <ProductDetail productId={productIdSelected} onSelectProductIdEvent={onSelectProductId} /> : categorySelected ? <ProductsByCategory category={categorySelected} onSelectProductIdEvent={onSelectProductId} onSelectCategoryEvent={onSelectCategory} /> : <Categories onSelectCategoryEvent={onSelectCategory} />}</>;
+    return (
+        <Navigator />
+    )
 }

@@ -6,13 +6,12 @@ import CategoryItem from '../components/CategoryItem'
 
 
 
-const Categories = ({ onSelectCategoryEvent }) => {
+const Categories = ({ navigation }) => {
     const renderCategoryItem = ({ item }) => (
-        <CategoryItem category={item} onSelectCategoryEvent={onSelectCategoryEvent} />
+        <CategoryItem category={item} navigation={navigation} />
     )
     return (
         <>
-            < Header title="Categorias" />
             <FlatList
                 data={categories_data}
                 renderItem={renderCategoryItem}

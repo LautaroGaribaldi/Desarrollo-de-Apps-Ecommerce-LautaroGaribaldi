@@ -4,9 +4,11 @@ import Header from '../components/Header'
 import { colors } from '../global/colors'
 import products_data from "../data/products_data.json"
 
-const ProductDetail = ({ productId, onSelectProductIdEvent }) => {
+const ProductDetail = ({ route }) => {
     const [productSelected, setProductSelected] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+
+    const productId = route.params
 
     useEffect(() => {
         const productFound = products_data.find(product => product.id === productId)
@@ -18,7 +20,6 @@ const ProductDetail = ({ productId, onSelectProductIdEvent }) => {
 
     return (
         <>
-            <Header title="Detalles del producto" />
             <>{
                 isLoading
                     ?
@@ -37,9 +38,6 @@ const ProductDetail = ({ productId, onSelectProductIdEvent }) => {
                                 <Text style={styles.price}>${productSelected.price}</Text>
                                 <Button title="Buy" onPress={null} color={colors.primary} />
                             </View>
-                        </View>
-                        <View>
-                            <Button title="Go Back" onPress={() => onSelectProductIdEvent("")} color={colors.aux} />
                         </View>
                     </>
             }

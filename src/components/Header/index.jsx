@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { colors } from '../../global/colors.js'
 import { styles } from "./styles.js"
+import { Ionicons } from '@expo/vector-icons';
 
-const Header = ({ title }) => {
+const Header = ({ title, navigation }) => {
     return (
         <View style={styles.headerConteiner}>
+            <TouchableOpacity onPress={navigation.goBack}>
+                <Ionicons name="return-up-back" size={24} color={colors.white} />
+            </TouchableOpacity>
             <Text style={styles.headerTitle}>{title}</Text>
         </View>
     )

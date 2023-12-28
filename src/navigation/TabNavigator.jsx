@@ -5,7 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ShopNavigator from './ShopNavigator'
 import CartNavitagor from './CartNavitagor'
 import { colors } from '../global/colors'
-import { Entypo, Fontisto } from '@expo/vector-icons';
+import { Entypo, Fontisto, FontAwesome5 } from '@expo/vector-icons';
+import OrdersNavigator from './OrdersNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -34,6 +35,16 @@ const TabNavigator = () => {
                     options={{
                         tabBarIcon: ({ focused }) => (
                             <Fontisto name="shopping-basket" size={24} color={focused ? "#ccc" : "black"} />
+                        )
+                    }}
+                />
+
+                <Tab.Screen
+                    name="OrderStack"
+                    component={OrdersNavigator}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <FontAwesome5 name="clipboard-list" size={24} color={focused ? "#ccc" : "black"} />
                         )
                     }}
                 />

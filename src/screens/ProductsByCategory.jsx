@@ -40,7 +40,6 @@ const ProductsByCategory = ({ navigation, route }) => {
                 renderItem={renderProductItem}
                 keyExtractor={item => item.id}
             />
-            <Button title="Go Back" onPress={null} color={colors.aux} />
         </>
 
     )

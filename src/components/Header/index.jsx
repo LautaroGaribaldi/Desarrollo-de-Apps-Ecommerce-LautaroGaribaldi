@@ -7,9 +7,15 @@ import { Ionicons } from '@expo/vector-icons';
 const Header = ({ title, navigation }) => {
     return (
         <View style={styles.headerConteiner}>
-            <TouchableOpacity onPress={navigation.goBack}>
-                <Ionicons name="return-up-back" size={24} color={colors.white} />
-            </TouchableOpacity>
+            {
+                navigation.canGoBack()
+                    ?
+                    <TouchableOpacity onPress={navigation.goBack}>
+                        <Ionicons name="return-up-back" size={24} color={colors.white} />
+                    </TouchableOpacity>
+                    :
+                    <View></View>
+            }
             <Text style={styles.headerTitle}>{title}</Text>
         </View>
     )

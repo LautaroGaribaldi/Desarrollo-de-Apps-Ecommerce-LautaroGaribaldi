@@ -1,10 +1,8 @@
 import { ActivityIndicator } from "react-native";
-//import Categories from "./src/screens/Categories.jsx";
 import { useFonts } from "expo-font";
-//import ProductsByCategory from "./src/screens/ProductsByCategory.jsx";
 import { useState } from "react";
-import Navigator from "./src/navigation/Navigator";
-//import ProductDetail from "./src/screens/ProductDetail.jsx";
+import TabNavigator from "./src/navigation/TabNavigator";
+//import Navigator from "./src/navigation/ShopNavigator";
 
 export default function App() {
     const [categorySelected, setCategorySelected] = useState("");
@@ -30,6 +28,6 @@ export default function App() {
     };
 
     return (
-        <Navigator />
+        <TabNavigator />
     )
 }

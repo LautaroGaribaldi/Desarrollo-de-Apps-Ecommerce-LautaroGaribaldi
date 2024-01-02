@@ -2,6 +2,8 @@ import { ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
 import { useState } from "react";
 import TabNavigator from "./src/navigation/TabNavigator";
+import { Provider } from "react-redux";
+import store from "./src/store";
 //import Navigator from "./src/navigation/ShopNavigator";
 
 export default function App() {
@@ -28,6 +30,8 @@ export default function App() {
     };
 
     return (
-        <TabNavigator />
+        <Provider store={store}>
+            <TabNavigator />
+        </Provider>
     )
 }

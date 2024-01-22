@@ -7,6 +7,7 @@ import Search from '../components/Search'
 import Card from '../components/Card'
 import { colors } from '../global/colors'
 import { useDispatch, useSelector } from 'react-redux'
+import { useGetProductsByCategoryQuery } from '../services/shopService'
 
 
 
@@ -18,12 +19,16 @@ const ProductsByCategory = ({ navigation, route }) => {
     //const { category } = route.params
 
     const category = useSelector(state => state.shopReducer.categorySelected)
-    const productFilteredByCategory = useSelector(state => state.shopReducer.productsFilteredByCategory)
+    //const productFilteredByCategory = useSelector(state => state.shopReducer.productsFilteredByCategory)
 
+    const { data: productFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(category)
     useEffect(() => {
-        const productFiltered = productFilteredByCategory.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
-        setProductsByCategory(productFiltered)
-    }, [category, search])
+        if (!isLoading) {
+            const productValues = Object.values(productFilteredByCategory)
+            const productFiltered = productValues.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+            setProductsByCategory(productFiltered)
+        }
+    }, [category, search, isLoading])
 
     const renderProductItem = ({ item }) => (
         <Card>

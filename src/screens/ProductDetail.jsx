@@ -3,20 +3,31 @@ import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { colors } from '../global/colors'
 import products_data from "../data/products_data.json"
+import { addItem } from '../features/cartSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 const ProductDetail = ({ route }) => {
-    const [productSelected, setProductSelected] = useState({})
+    //const [productSelected, setProductSelected] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
     const productId = route.params
 
+    const productSelected = useSelector(state => state.shopReducer.productIdSelected)
+
+
     useEffect(() => {
-        const productFound = products_data.find(product => product.id === productId)
-        setProductSelected(productFound)
+        //const productFound = products_data.find(product => product.id === productId)
+        //setProductSelected(productFound)
         setIsLoading(!isLoading)
 
     }
         , [productId])
+
+    const dispatch = useDispatch()
+
+    const onAddToCart = () => {
+        dispatch(addItem({ ...productSelected, quantity: 1 }))
+    }
 
     return (
         <>
@@ -36,7 +47,7 @@ const ProductDetail = ({ route }) => {
                                 <Text style={styles.title}>{productSelected.title}</Text>
                                 <Text style={styles.text}>{productSelected.description}</Text>
                                 <Text style={styles.price}>${productSelected.price}</Text>
-                                <Button title="Buy" onPress={null} color={colors.primary} />
+                                <Button title="Agregar al carrito" onPress={onAddToCart} color={colors.primary} />
                             </View>
                         </View>
                     </>

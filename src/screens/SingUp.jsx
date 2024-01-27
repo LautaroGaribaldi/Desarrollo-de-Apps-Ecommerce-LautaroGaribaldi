@@ -15,7 +15,6 @@ const SingUp = ({ navigation }) => {
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [confirmPasswordError, setConfirmPasswordError] = useState("")
-
     const [triggerSignUp, result] = useSignUpMutation()
 
     const onSubmit = () => {
@@ -33,16 +32,22 @@ const SingUp = ({ navigation }) => {
                 switch (Object.keys(e)[0]) {
                     case "empty_email":
                         setEmailError(customError)
+                        break
                     case "invalid_email":
                         setEmailError(customError)
+                        break
                     case "empty_password":
                         setPasswordError(customError)
+                        break
                     case "invalid_password":
                         setPasswordError(customError)
+                        break
                     case "invalid_confirm_password":
                         setConfirmPasswordError(customError)
+                        break
                     case "invalid_match_password":
                         setConfirmPasswordError(customError)
+                        break
                     default:
                         break
                 }

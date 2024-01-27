@@ -4,8 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ShopNavigator from './ShopNavigator'
 import CartNavitagor from './CartNavitagor'
 import { colors } from '../global/colors'
-import { Entypo, Fontisto, FontAwesome5 } from '@expo/vector-icons';
+import { Entypo, Fontisto, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 import OrdersNavigator from './OrdersNavigator'
+import ProfileNavitagor from './ProfileNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -43,6 +44,16 @@ const TabNavigator = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <FontAwesome5 name="clipboard-list" size={24} color={focused ? "#ccc" : "black"} />
+                    )
+                }}
+            />
+
+            <Tab.Screen
+                name="ProfileStack"
+                component={ProfileNavitagor}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <FontAwesome name="user-o" size={24} color={focused ? "#ccc" : "black"} />
                     )
                 }}
             />

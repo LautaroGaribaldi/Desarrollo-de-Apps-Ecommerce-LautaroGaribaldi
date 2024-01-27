@@ -5,4 +5,5 @@ export const colors = {
     tertiary: "#068D9D",
     aux: "#80DED9",
     white: "#fff",
+    success: "#00A878",
 };

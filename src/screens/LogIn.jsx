@@ -14,6 +14,7 @@ const LogIn = ({ navigation }) => {
 
     const onSubmit = () => {
         triggerLogIn({ email, password })
+        //triggerLogIn({ email: "pepe@gmail.com", password: "1234567" })
         console.log(result)
     }
 

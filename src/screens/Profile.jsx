@@ -3,10 +3,13 @@ import user_data from "../data/user_data.json"
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import LocationSelector from '../components/LocationSelector/LocationSelector'
+import { colors } from '../global/colors'
 
 const Profile = ({ navigation }) => {
     //const [image, setImage] = useState(null)
     const image = useSelector(state => state.authReducer.profilePicture)
+    const location = useSelector(state => state.authReducer.location)
+    console.log("fofo", location)
 
     return (
         <>
@@ -27,6 +30,14 @@ const Profile = ({ navigation }) => {
 
                 </View>
             </View>
+            {
+                location.address
+                &&
+                <View style={styles.addressContainer}>
+                    <Text style={styles.addressTitle}>Ultima Ubicacion Guardada:</Text>
+                    <Text style={styles.addressDescription}>{location.address}</Text>
+                </View>
+            }
             <LocationSelector />
         </>
     )
@@ -60,5 +71,22 @@ const styles = StyleSheet.create({
     userData: {
         fontFamily: 'RobotoMono-Light',
         fontSize: 12
+    },
+    addressContainer: {
+        alignItems: "center",
+        gap: 5,
+        padding: 10,
+        margin: 10,
+        borderRadius: 10,
+        backgroundColor: colors.primaryBack
+    },
+    addressTitle: {
+        fontFamily: "RobotoMono-Bold",
+        fontSize: 14,
+        color: colors.white,
+    },
+    addressDescription: {
+        fontFamily: "RobotoMono-Light",
+        color: colors.white
     }
 })

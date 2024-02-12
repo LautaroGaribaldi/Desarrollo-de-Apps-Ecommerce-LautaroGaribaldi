@@ -2,9 +2,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
 import AuthtNavitagor from "./AuthNavigator";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetProfilePictureQuery } from "../services/shopService";
+import { useGetProfilePictureQuery, useGetUserLocationQuery } from "../services/shopService";
 import { useEffect } from "react";
-import { setProfilePicture } from "../features/authSlice";
+import { setProfilePicture, setUserLocation } from "../features/authSlice";
 
 const MainNavigator = () => {
     const user = useSelector(state => state.authReducer.user)
@@ -12,12 +12,16 @@ const MainNavigator = () => {
     const localId = useSelector(state => state.authReducer.localId)
     const { data, error, isLoading } = useGetProfilePictureQuery(localId)
     //const user = "loged"
+    const { data: locationData, error: locationError, isLoading: isLocationLoading = useGetUserLocationQuery() } = useGetUserLocationQuery(localId)
 
     useEffect(() => {
         if (data) {
             dispatch(setProfilePicture(data.image))
         }
-    }, [data])
+        if (locationData) {
+            dispatch(setUserLocation(locationData))
+        }
+    }, [data, locationData, isLoading, isLocationLoading])
 
     return (
         <NavigationContainer>

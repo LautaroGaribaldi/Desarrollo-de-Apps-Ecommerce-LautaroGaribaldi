@@ -9,7 +9,7 @@ const Profile = ({ navigation }) => {
     //const [image, setImage] = useState(null)
     const image = useSelector(state => state.authReducer.profilePicture)
     const location = useSelector(state => state.authReducer.location)
-    console.log("fofo", location)
+    console.log(location)
 
     return (
         <>

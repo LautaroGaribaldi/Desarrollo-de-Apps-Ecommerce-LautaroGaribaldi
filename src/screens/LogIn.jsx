@@ -5,6 +5,7 @@ import { useLogInMutation } from '../services/authService'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'
+import { insertSession } from '../db'
 
 const LogIn = ({ navigation }) => {
     const [email, setEmail] = useState("")
@@ -13,9 +14,8 @@ const LogIn = ({ navigation }) => {
     const [triggerLogIn, result] = useLogInMutation()
 
     const onSubmit = () => {
-        triggerLogIn({ email, password })
-        //triggerLogIn({ email: "pepe@gmail.com", password: "1234567" })
-        console.log(result)
+        //triggerLogIn({ email, password })
+        triggerLogIn({ email: "pepe@gmail.com", password: "1234567" })
     }
 
     const dispatch = useDispatch()
@@ -23,6 +23,13 @@ const LogIn = ({ navigation }) => {
     useEffect(() => {
         if (result.data) {
             dispatch(setUser(result.data))
+            insertSession({
+                localId: result.data.localId,
+                email: result.data.email,
+                token: result.data.idToken
+            })
+                .then(result => console.log("Usuario insertado correctamente: ", result))
+                .catch(error => console.log("error al insertar usuario: ", error.message))
         }
     }, [result])
 

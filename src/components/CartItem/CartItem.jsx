@@ -3,8 +3,15 @@ import React from 'react'
 import Card from '../Card'
 import { Feather } from '@expo/vector-icons';
 import { colors } from '../../global/colors';
+import { removeItem } from '../../features/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const CartItem = ({ item }) => {
+    const dispatch = useDispatch()
+
+    const removeItemFromCart = (itemId) => {
+        dispatch(removeItem(itemId))
+    }
 
 
     return (
@@ -22,7 +29,7 @@ const CartItem = ({ item }) => {
                     Cantidad: {item.quantity}, Total: ${item.price * item.quantity}
                 </Text>
             </View>
-            < TouchableOpacity style={styles.trashCart} onPress={null}>
+            < TouchableOpacity style={styles.trashCart} onPress={() => removeItemFromCart(item.id)}>
                 <Feather name="trash" size={24} color="black" />
             </TouchableOpacity>
         </Card>

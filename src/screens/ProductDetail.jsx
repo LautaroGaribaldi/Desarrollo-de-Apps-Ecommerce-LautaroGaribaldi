@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { colors } from '../global/colors'
 import products_data from "../data/products_data.json"
-import { addItem } from '../features/cartSlice'
+import { addItem, } from '../features/cartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
 const ProductDetail = ({ route }) => {
-    //const [productSelected, setProductSelected] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
     const productId = route.params
@@ -16,8 +15,6 @@ const ProductDetail = ({ route }) => {
 
 
     useEffect(() => {
-        //const productFound = products_data.find(product => product.id === productId)
-        //setProductSelected(productFound)
         setIsLoading(!isLoading)
 
     }

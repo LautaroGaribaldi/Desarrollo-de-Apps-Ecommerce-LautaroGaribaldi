@@ -12,7 +12,6 @@ const MainNavigator = () => {
     const dispatch = useDispatch()
     const localId = useSelector(state => state.authReducer.localId)
     const { data, error, isLoading } = useGetProfilePictureQuery(localId)
-    //const user = "loged"
     const { data: locationData, error: locationError, isLoading: isLocationLoading = useGetUserLocationQuery() } = useGetUserLocationQuery(localId)
 
     useEffect(() => {

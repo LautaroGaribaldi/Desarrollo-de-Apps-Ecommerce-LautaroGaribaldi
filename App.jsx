@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import store from "./src/store";
 import MainNavigator from "./src/navigation/MainNavigator";
 import { init } from "./src/db";
-//import Navigator from "./src/navigation/ShopNavigator";
 
 
 export default function App() {

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
-//import products_data from "../data/products_data.json"
 import ProductItem from '../components/ProductItem'
 import Header from '../components/Header'
 import Search from '../components/Search'
@@ -16,10 +15,8 @@ const ProductsByCategory = ({ navigation, route }) => {
     const [productsByCategory, setProductsByCategory] = useState([])
     const [search, setSearch] = useState("")
 
-    //const { category } = route.params
 
     const category = useSelector(state => state.shopReducer.categorySelected)
-    //const productFilteredByCategory = useSelector(state => state.shopReducer.productsFilteredByCategory)
 
     const { data: productFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(category)
     useEffect(() => {

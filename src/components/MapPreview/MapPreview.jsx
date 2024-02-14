@@ -3,7 +3,6 @@ import { maps_api_key } from '../../apis/googleClouds'
 
 
 const MapPreview = ({ location }) => {
-    //console.log("fafa", location)
     const icon = "https://i.postimg.cc/5NgNBbFD/shop.png"
     return (
         <View style={styles.mapPreview}>

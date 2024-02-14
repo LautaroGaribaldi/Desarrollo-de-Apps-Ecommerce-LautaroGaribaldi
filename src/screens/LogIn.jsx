@@ -14,13 +14,14 @@ const LogIn = ({ navigation }) => {
     const [triggerLogIn, result] = useLogInMutation()
 
     const onSubmit = () => {
-        //triggerLogIn({ email, password })
-        triggerLogIn({ email: "pepe@gmail.com", password: "1234567" })
+        triggerLogIn({ email, password })
+        //triggerLogIn({ email: "pepe@gmail.com", password: "1234567" }) Para pruebas iniciar rapidamente sin tener que poner usuario.
     }
 
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log("error de logeo: ", result?.error?.data?.error?.message)
         if (result.data) {
             dispatch(setUser(result.data))
             insertSession({

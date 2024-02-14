@@ -8,6 +8,7 @@ import { colors } from '../global/colors'
 const Profile = ({ navigation }) => {
     const image = useSelector(state => state.authReducer.profilePicture)
     const location = useSelector(state => state.authReducer.location)
+    const userName = useSelector(state => state.authReducer.user)
 
     return (
         <>
@@ -20,7 +21,7 @@ const Profile = ({ navigation }) => {
                     </Pressable>
                 </View>
                 <View style={styles.userDataContainer}>
-                    <Text style={styles.userTitle}>{user_data.name}</Text>
+                    <Text style={styles.userTitle}>{userName}</Text>
                     <Text style={styles.userData}>{user_data.role}</Text>
                     <Text style={styles.userData}>{user_data.level}</Text>
                     <Text style={styles.userData}>{user_data.addres}</Text>

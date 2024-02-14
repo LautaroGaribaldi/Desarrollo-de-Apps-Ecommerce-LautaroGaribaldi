@@ -87,7 +87,7 @@ const SingUp = ({ navigation }) => {
             </TouchableOpacity>
             <View style={styles.altConteiner}>
                 <Text style={styles.subtitle}>¿ya tenes una cuenta?</Text>
-                <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate("Login") }}>
+                <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate("LogIn") }}>
                     <Text style={styles.subtitleLink}>Ingresar</Text>
                 </TouchableOpacity>
             </View>
